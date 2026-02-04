@@ -17,19 +17,21 @@ export default function ConditionalLayout({ children }: { children: React.ReactN
 
     useEffect(() => {
         checkAuth();
-
         window.addEventListener("storage", checkAuth);
-
         return () => window.removeEventListener("storage", checkAuth);
     }, [pathname]);
+
+    const isPublicPage = pathname === "/product-details";
+    
+    const showLayout = isLoggedIn || isPublicPage;
 
     if (loading) return <>{children}</>;
 
     return (
         <>
-            {isLoggedIn && <Navbar />}
+            {showLayout && <Navbar />}
             <main className="min-h-screen">{children}</main>
-            {isLoggedIn && <Footer />}
+            {showLayout && <Footer />}
         </>
     );
 }
