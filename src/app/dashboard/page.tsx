@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 import { LogOut, ArrowRight, User } from "lucide-react";
 import PageHeader from "@/components/layout/PageHeader";
 import Link from "next/link"; 
-
+import Loader from "@/components/ui/loader";
 export default function DashboardPage() {
   const { get, post, isLoading } = useApi();
   const router = useRouter();
@@ -44,7 +44,7 @@ export default function DashboardPage() {
     router.push("/register");
   };
 
-  if (isLoading) return <div className="p-10 text-center text-[#C2998F]">Loading...</div>;
+  if (isLoading) return <Loader />;
 
   return (
     <div className="min-h-screen bg-white">

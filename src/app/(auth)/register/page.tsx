@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import Link from "next/link";
-
+import Cookies from 'js-cookie';
 export default function RegisterPage() {
   const { post, isLoading } = useApi();
   const router = useRouter();
@@ -20,8 +20,10 @@ export default function RegisterPage() {
     try {
       const res = await post("/auth/register", values);
       localStorage.setItem("token", res.data.token);
+      Cookies.set('token', res.data.token, { expires: 7 });
       toast.success(res.message || "Registration successful!");
       router.push("/verify");
+      router.refresh();
     } catch (err: any) {
       toast.error(err.response?.data?.message || "Registration failed");
     }
