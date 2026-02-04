@@ -8,6 +8,7 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 // select the paths which need authentication
   const isAuthPage = pathname === '/login' || pathname === '/register';
+  const isVerifyPage = pathname === '/verify';
   const isDashboardPage = pathname.startsWith('/dashboard');
 
   // when user is logged in and tries to access login or register page
@@ -15,7 +16,8 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 // when user is not logged in and tries to access dashboard page
-  if (!token && isDashboardPage) {
+
+  if (!token && (isDashboardPage || isVerifyPage)) {
     return NextResponse.redirect(new URL('/register', request.url));
   }
 
@@ -24,5 +26,5 @@ export function middleware(request: NextRequest) {
 // specify the paths where the middleware should run
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/login', '/register'],
+  matcher: ['/dashboard/:path*', '/login', '/register', '/verify'],
 };
