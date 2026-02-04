@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+#  Tinytales - Frontend Task (Next.js)
 
-## Getting Started
+A professional React/Next.js application featuring a complete Authentication Flow and a pixel-perfect, responsive Product Details page.
 
-First, run the development server:
+##  Live Demo
+**[View Live Demo on Vercel](رابط_المشروع_على_فيرسل_هنا)**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+##  Project Overview
+This project was developed as a technical assessment, focusing on two main aspects:
+1.  **Authentication System:** Seamless integration with provided APIs for User Registration, Login, and Account Verification.
+2.  **Pixel-Perfect UI:** A high-fidelity, fully responsive implementation of the provided UI mockup for the Product Details section.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features
+-   **Authentication Flow:**
+    -   **Register:** Full Name, Email, Password, Phone, and Country Code.
+    -   **Login:** Secure login with token management.
+    -   **OTP Verification:** Account activation using code `123456`.
+-   **User Experience:**
+    -   Dynamic Welcome Dashboard after login.
+    -   Protected Routes using Middleware/Auth checks.
+    -   Real-time notifications using `Sonner` (Toast).
+-   **UI/UX Implementation:**
+    -   Pixel-perfect implementation of the Product Section.
+    -   Responsive Design (Mobile, Tablet, Desktop).
+    -   Dynamic Quantity selector and Price calculation.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
+-   **Framework:** Next.js 15+ (App Router)
+-   **Language:** TypeScript
+-   **Styling:** Tailwind CSS
+-   **API Handling:** Axios & Custom Hooks
+-   **Icons:** Lucide React
+-   **State Management:** React Hooks (useState, useEffect)
+-   **Authentication Storage:** LocalStorage & JS-Cookies
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+##  Installation & Setup
 
-## Learn More
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/olaalam/tinytales.git](https://github.com/olaalam/tinytales.git)
+    cd tinytales
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3.  **Configure Environment Variables:**
+    Create a `.env.local` file in the root directory and add:
+    ```env
+    NEXT_PUBLIC_BASE_URL=https://tinytales.trendline.marketing/api
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+    Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+```text
+src/
+├── app/               # Next.js App Router (Pages & Layouts)
+├── components/        # Reusable UI Components
+│   ├── layout/        # Navbar, Footer, PageHeader
+│   ├── product/       # Product details, Reviews, Similar items
+│   └── ui/            # Shadcn/UI base components
+├── hooks/             # Custom hooks (useAuth, useApi)
+├── lib/               # Utility functions & Axios instance
+└── middleware.ts      # Route protection & Redirection
