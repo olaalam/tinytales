@@ -3,28 +3,27 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-// git token from cookies because the middleware not read the local storage
   const token = request.cookies.get('token')?.value;
   const { pathname } = request.nextUrl;
-// select the paths which need authentication
+
   const isAuthPage = pathname === '/login' || pathname === '/register';
   const isVerifyPage = pathname === '/verify';
   const isDashboardPage = pathname.startsWith('/dashboard');
-
-  // when user is logged in and tries to access login or register page
+//1. when user is authenticated and tries to access auth pages, redirect to dashboard
   if (token && isAuthPage) {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
-// when user is not logged in and tries to access dashboard page
+  //2. when user is not authenticated and tries to access protected pages, redirect to register
 
   if (!token && (isDashboardPage || isVerifyPage)) {
     return NextResponse.redirect(new URL('/register', request.url));
   }
 
+
   return NextResponse.next();
 }
-// specify the paths where the middleware should run
 
 export const config = {
+
   matcher: ['/dashboard/:path*', '/login', '/register', '/verify'],
 };
